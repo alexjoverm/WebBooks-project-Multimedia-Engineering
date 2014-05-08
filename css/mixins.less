@@ -1,0 +1,666 @@
+//********* MIXINS *******//
+@import url("variables.less");
+
+
+//*** FUENTES ***//
+.fn-relative(@tam){   ////rem o em(en su defecto)
+  @tam2: @tam/10;
+  font-size: unit(@tam2, em);
+  font-size: unit(@tam2, rem);
+}
+
+.fn-static(@tam){     ////rem o px(en su defecto)
+  @tam2: @tam/10;
+  font-size: unit(@tam, px);
+  font-size: unit(@tam2, rem);
+}
+
+.fn-format(@color: @fn-color ; @fn-style: normal ; @fn-weight: normal){
+  color       : @color;
+  font-style  : @fn-style;
+  font-weight : @fn-weight;
+}
+
+.fn-format-p(@margin; @size){
+  margin: @margin;
+  .fn-static(@size);
+}
+
+.fn-text-truncate() {   ////Requiere el padre display: block o inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  white-space: nowrap;
+  &:hover{ .fn-text-no-truncate; }
+}
+
+.fn-text-no-truncate() {
+  overflow: initial;
+  -ms-text-overflow: initial;
+  text-overflow: initial;
+  white-space: initial;
+}
+.fn-links(@color: @cl-comp){
+   .transition(0.4s);
+   color: multiply(@color, #ccc);  ////oscurece
+   cursor: pointer;
+   text-decoration: none;
+
+   &:focus, &:hover{
+     text-decoration: underline;
+     color: screen(@color, #222); ////aclarea
+   }
+
+}
+
+
+
+//*** BORDES ***//
+
+.bd-bottom-fx(@tam_borde;@color){
+  border-bottom: @tam_borde solid darken(@color,15%);
+  &:hover{  border-bottom: @tam_borde solid lighten(@color,15%);  }
+}
+
+.bd-left-fx(@tam_borde;@color){
+  border-left: @tam_borde solid darken(@color,15%);
+  &:hover{  border-left: @tam_borde solid lighten(@color,15%);  }
+}
+
+.bd-radius(@borde){
+  -webkit-border-radius : @borde;
+  -moz-border-radius    : @borde;
+  border-radius         : @borde;
+}
+
+////Redondea las 2 esquinas de ese lado
+.bd-radius-top(@radius) {
+  border-top-right-radius: @radius;
+  border-top-left-radius: @radius;
+}
+.bd-radius-right(@radius) {
+  border-bottom-right-radius: @radius;
+  border-top-right-radius: @radius;
+}
+.bd-radius-bottom(@radius) {
+  border-bottom-right-radius: @radius;
+  border-bottom-left-radius: @radius;
+}
+.bd-radius-left(@radius) {
+  border-bottom-left-radius: @radius;
+  border-top-left-radius: @radius;
+}
+
+
+
+//*** BLOQUES ***//
+
+.colx(@num-columnas; @ancho-hueco: 100%; @tam-cambio: 768px; @width-media: 95%;){
+  float: none;
+  width: @width-media;
+  margin-right: 0;
+  overflow: auto;
+
+  @media (min-width: @tam-cambio){
+    @col-bruto   : @ancho-hueco/@num-columnas;
+    @col-margin  : @ancho-hueco/(@num-columnas - 1);
+    width        : @col-bruto * 0.9 ;    
+    float        : left;
+    margin-right : @col-margin * 0.1;
+    min-height   : 1px;
+
+    &:last-child{
+      margin-right: 0;
+    }
+
+    /*&:nth-child(@{num-columnas}){
+      margin-right: 0;
+    }*/
+  }
+}
+
+
+
+
+.bq-box(@color:@cl-prim){
+   background: screen(@color, #e7e7e7);
+   border-left: 4px solid multiply(@color, #dfdfdf);
+   margin: @mp auto;
+   padding: @mp-both;
+   .fn-relative(@fn-box);
+   &>h3{ color: multiply(@color, #dfdfdf)}
+}
+
+.bq-box-comment(@color:@cl-prim; @bd-radius: 8px 8px 4px 4px; @bd-w: 2px; @margin:@mp-l){
+  background: screen(@color, #eaeaea);
+  border: @bd-w solid multiply(@color, #dfdfdf);
+  .bd-radius(@bd-radius);
+  margin-top: @margin;
+  &>h5{
+    color: white;
+    margin-top: 0;
+    .fn-static(@fn-tam);
+    display: block;
+    width: 96%;
+    padding: 5px 2%;
+    background: multiply(@color, #dfdfdf);
+  }
+  &>p{
+    display: block;
+    width: 96%;
+    padding: 0 2%;
+  }
+}
+
+.bq-box-book(@color:@cl-prim; @margin:@mp-l){
+  background: screen(@color, #e7e7e7);
+   border-left: 4px solid multiply(@color, #dfdfdf);
+   margin-top: @margin;
+   padding: @mp-both;
+   .fn-relative(@fn-box);
+   & h4{ color: multiply(@color, #dfdfdf)}
+}
+
+.bq-box-glow(@color:@cl-prim){
+   .box-shadow(0 0 13px fadeout(@color, 25%));
+}
+
+.bq-clear() {
+   &:before, &:after {
+      content: " ";
+      display: table;
+   }
+   &:after {
+      clear: both;
+   }
+}
+
+.bq-center(@mg-updown: 0) {
+  display : block;
+  margin  : @mg-updown auto;
+}
+
+.bq-size(@width; @height: auto) {
+  width  : @width;
+  height : @height;
+}
+.bq-square(@size) {
+  .bq-size(@size, @size);
+}
+
+.bq-hide(@maxmin; @tam: @tam-tablet){
+  @media (e("@{maxmin}-width:") @tam){
+    display: none !important;
+  }
+}
+
+.bq-line(@width: 100%){
+  display: block;
+  width: @width;
+  overflow: auto;
+}
+
+.bq-wrap-fluid(@w: @tam-wrap-fluid; @maxw: @tam-max-wrap-fluid; @pd:@pad-wrap-fluid){
+  display: block;
+  overflow: auto;
+  margin: 0 auto;
+  width: @w;
+  max-width: @maxw;
+  padding: @pd;
+}
+
+.bq-wrap-static(@w: @tam-wrap-static; @pd:@pad-wrap-static){
+  display: block;
+  overflow: auto;
+  margin: 0 auto;
+  width: @w;
+  padding: @pd;
+}
+
+
+
+//**** IMAGENES *****//
+.img-responsive(@maxwidth: none){
+  width: 100%;
+  max-width: @maxwidth;
+}
+
+////esta hace que no sobrepase un límite, pero no define el width (util para iconos p.e.)
+.img-responsive-soft(@width: auto){
+  width: @width;
+  max-width: 100%;
+}
+
+.img-wrap-preview(){
+  overflow: hidden;
+  background: transparent;
+
+  & img{
+    .transition(0.5s);
+  }
+}
+
+.img-rounded(@round: 100px; @bd: 5px solid white){
+  border: @bd;
+  .bd-radius(@round);
+}
+
+.img-retina(@file-1x; @file-2x; @width-1x; @height-1x) {
+  background-image: url("@{file-1x}");
+
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (   min--moz-device-pixel-ratio: 2),
+  only screen and (     -o-min-device-pixel-ratio: 2/1),
+  only screen and (        min-device-pixel-ratio: 2),
+  only screen and (                min-resolution: 192dpi),
+  only screen and (                min-resolution: 2dppx) {
+    background-image: url("@{file-2x}");
+    background-size: @width-1x @height-1x;
+  }
+}
+
+
+
+
+//**** LISTAS ****//
+
+.list-menu(@color; @li-width: auto; @margin-updown:0px; @a-cl: #fff; @a-fn-size:14; @a-pd: @pd-list){   ////no se contemplan 2os niveles de lista
+   padding: 0;
+   margin: @margin-updown auto;
+
+   &>li{
+      list-style: none;
+      width: @li-width;
+
+      a{
+         .fn-relative(@a-fn-size);
+         display: block;
+         cursor: pointer;
+         text-decoration: none;
+         padding: @a-pd;
+         color: @a-cl;
+
+         .transition(@anim-fast-m);
+         .li-color-tolight(@color);
+         &:hover,&:focus{
+            text-decoration: none;
+            color: @a-cl;
+         }
+      }
+   }
+
+   &>li.active{
+      a{ background: screen(@color, @screen-list); }
+   }
+}
+
+.list-horizontal(){
+   display: block;
+    overflow: hidden;
+   text-align: center;
+   &>li { float: left;}
+
+   @media only screen and (max-width: 768px){
+      width:90%;
+      margin: 0 auto;
+
+      &>li{
+         width: 100%;
+         padding:0;
+         float:none;
+
+         a{ padding: @mp-both; }
+      }
+   }
+}
+
+   ////para usar con .list-horizontal
+.list-illuminated-h(@color: @cl-comp; @bd-tam: @bd-list){
+
+   &>li{
+      .fx-border-color-bottom(@bd-tam,@color);
+      .fx-border-color-left(0px,#000);
+      .transition(0.6s);
+   }
+
+   &>li.active{
+      border-bottom: @bd-tam solid screen(@color, @screen-list);
+   }
+
+   @media only screen and (max-width: 768px){
+      &>li{
+         .fx-border-color-bottom(0px, #000);
+         .fx-border-color-left(@bd-tam,@color);
+      }
+    
+      &>li.active{
+         border-left: @bd-tam solid screen(@color, @screen-list);
+         border-bottom: 0px solid screen(@color, @screen-list);
+      }
+   }
+}
+   ////para usar con .list (vertical)
+.list-illuminated-v(@color: @cl-comp){
+   .fx-border-color-left(4px,@color);
+   &>li.active{
+      border-left: @bd-tam solid screen(@color, @screen-list);
+   }
+}
+
+
+  ////colores
+.li-color-tocolor(@color1; @color2; @bd-color: multiply(@color1, @multiply-list)){
+   background: @color1;
+   &:hover,&:focus{
+      background: @color2;
+   }
+}
+
+.li-color-tolight(@color){
+    .li-color-tocolor(multiply(@color, @multiply-list); screen(@color, @screen-list));
+}
+
+
+
+
+//**** FORMULARIOS ****//
+
+.fm-input(@bg_color:#fff; @bd_color:@cl-gray-light; @color:@fn-color){
+    background-color: @bg_color;
+    border: 1px solid @bd_color;
+    color: @color;
+    padding: @mp-both-s;
+    font-weight: normal;
+    line-height: 1.428571429;
+    vertical-align: middle;
+    
+    .bd-radius(5px);
+}
+
+.fm-input-glow(@cl-focus: lighten(@cl-blue,15%); @cl-hover: lighten(@cl-orange, 16%)){
+  @cl-f: fadeout(@cl-focus, 15%);
+  @cl-h: fadeout(@cl-hover, 15%);
+  .transition(0.4s);
+  &:hover{
+    border  : 1px solid darken(@cl-hover, 10%);
+    outline : 0;
+    .box-shadow(e("0 0 8px @{cl-h}"));
+   }
+  &:focus{
+    border  : 1px solid darken(@cl-focus, 10%);
+    outline : 0;
+    .box-shadow(e("0 0 8px @{cl-f}"));
+   }
+}
+
+.fm-input-colored(@color){
+  @fd: fadeout(@color, 25%);
+   background: lighten(@color, 85%);
+   border  : 1px solid darken(@color, 10%);
+   outline : 0;
+   .box-shadow(e("0 0 8px @{fd}"));
+}
+
+   ////Para TextArea expandible
+.fm-textarea-resizable(@direction: both) {
+  resize   : @direction;  //// Options: horizontal, vertical, both
+  overflow : auto;  //// Safari fix
+  min-height: 100px;
+}
+
+
+
+
+
+//**** BOTONES ****//
+.bt(){
+    display: inline-block;
+    text-decoration: none;
+    line-height: @fn-lineheight-base;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+
+    .transition(@anim-fast);
+    .bd-radius(5px);
+    &:hover,&:focus{
+      text-decoration: none;
+  }
+}
+
+  ////colores
+.bt-color-tocolor(@color1; @color2; @fn-color: #fff; @bd-color1: darken(@color1, 4%);@bd-color2: darken(@color2, 4%)){
+    background: @color1;
+    &:hover,&:focus{
+      background: @color2;
+      border: 1px solid @bd-color2;
+      color: @fn-color;
+  }
+  color: @fn-color;
+  border: 1px solid @bd-color1;
+}
+
+.bt-color-tolight(@color){
+    @c: saturate(@color,4%);
+    .bt-color-tocolor(screen(@color, #191919), multiply(@c, #dfdfdf));
+}
+
+.bt-color-white(@color:#fafafa; @fn-col:#000){
+    .bt-color-tocolor(@color; darken(@color, 6%); @fn-color: @fn-col; @bd-color1:darken(@color, 20%); @bd-color2: darken(@color, 40%));
+}
+
+  ////tamaños
+.bt-s(){
+    padding: @mp-both-s;
+    .fn-relative(13);
+}
+
+.bt-m(){
+    padding: @mp-both;
+    .fn-relative(14);
+}
+
+.bt-l(){
+    padding: @mp-both-l;
+    .fn-relative(15);
+}
+
+
+
+
+
+//**** EFECTOS ****//
+
+.fx-futuristic(@color1; @color2; @desp; @url-img){ ////url-img debe ser la de la sombra
+  background: url(@url-img) repeat-x scroll 0 @desp @color1;
+  .transition(all 0.5s ease);
+  &:hover,&:focus{
+    background: url(@url-img) repeat-x scroll 0 0px @color2;
+}
+}
+
+.fx-border-color-bottom(@tam_borde;@color){
+  border-bottom: @tam_borde solid multiply(@color,@multiply-list-bd);
+  &:hover{  border-bottom: @tam_borde solid screen(@color,@screen-list);  }
+}
+
+.fx-border-color-left(@tam_borde;@color){
+  border-left: @tam_borde solid multiply(@color,@multiply-list-bd);
+  &:hover{  border-left: @tam_borde solid screen(@color,@screen-list);  }
+}
+
+
+//**** CSS3 (mismos nombres) ****//
+ ////Colores
+.gradient(@bg-color: #F5F5F5; @start: #EEE; @stop: #FFF) {
+  background : @bg-color;
+  background : -webkit-gradient(linear, left bottom, left top, color-stop(0, @start), color-stop(1, @stop));
+  background : -ms-linear-gradient(bottom, @start,  @stop);
+  background : -moz-linear-gradient(center bottom, @start 0%, @stop 100%);
+  background : -o-linear-gradient(@stop,   @start);
+  filter     : e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@stop,@start));
+}
+
+.opacity(@opacity: 0.5) {
+  -moz-opacity    : @opacity;
+  -khtml-opacity  : @opacity;
+  -webkit-opacity : @opacity;
+  opacity         : @opacity;
+  @opperc         : @opacity * 100;
+  -ms-filter      : ~"progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})";
+  filter          : ~"alpha(opacity=@{opperc})";
+}
+
+
+  ////Prefijos, CSS y Otros
+  .box-shadow(...){
+ -webkit-box-shadow:@arguments; //// iOS <4.3 & Android <4.1
+ -moz-box-shadow:@arguments;
+ box-shadow:@arguments;   
+
+}
+
+.transition-complete(...) {
+  -webkit-transition: @arguments;
+  -moz-transition: @arguments;
+  -o-transition: @arguments;
+  transition: @arguments;
+}
+
+.transition(@dur) {
+  -webkit-transition: all @dur ease;
+  -moz-transition: all @dur ease;
+  -o-transition: all @dur ease;
+  transition: all @dur ease;
+}
+
+
+  ////Transformaciones
+.transform(...) {
+    -webkit-transform : @arguments;
+    -moz-transform    : @arguments;
+    -o-transform      : @arguments;
+    -ms-transform     : @arguments;
+    transform         : @arguments;
+}
+
+.rotate(@deg:5deg){
+    .transform(rotate(@deg));
+}
+
+.rotateX(@degrees) {
+    -webkit-transform: rotateX(@degrees);
+      -ms-transform: rotateX(@degrees); //// IE9 only
+      transform: rotateX(@degrees);
+}
+.rotateY(@degrees) {
+   -webkit-transform: rotateY(@degrees);
+   -ms-transform: rotateY(@degrees); //// IE9 only
+   transform: rotateY(@degrees);
+}
+
+.scale(@ratio:1.5){
+   .transform(scale(@ratio));
+}
+
+.translate(@x:0, @y:0) {
+   .transform(translate(@x, @y));
+}
+
+.perspective(@perspective) {
+   -webkit-perspective: @perspective;
+   -moz-perspective: @perspective;
+   perspective: @perspective;
+}
+.perspective-origin(@perspective) {
+   -webkit-perspective-origin: @perspective;
+   -moz-perspective-origin: @perspective;
+   perspective-origin: @perspective;
+}
+.transform-origin(@origin) {
+   -webkit-transform-origin: @origin;
+   -moz-transform-origin: @origin;
+   -ms-transform-origin: @origin; //// IE9 only
+   transform-origin: @origin;
+}
+
+.transform3d (@arguments) {
+   -webkit-transform: @arguments;
+   -webkit-transform-style: preserve-3d;
+   -moz-transform: @arguments;
+   -moz-transform-style: preserve-3d;
+   -ms-transform: @arguments;
+   -ms-transform-style: preserve-3d;
+   -o-transform: @arguments;
+   -o-transform-style: preserve-3d;
+   transform: @arguments;
+   transform-style: preserve-3d;
+}
+
+.rotate3d (@degX; @degY:0; @degZ:0){
+   -webkit-transform: rotateX(@degX) rotateY(@degY) rotateZ(@degZ);
+   -webkit-transform-style: preserve-3d;
+   -moz-transform: rotateX(@degX) rotateY(@degY) rotateZ(@degZ);
+   -moz-transform-style: preserve-3d;
+   -ms-transform: rotateX(@degX) rotateY(@degY) rotateZ(@degZ);
+   -ms-transform-style: preserve-3d;
+   -o-transform: rotateX(@degX) rotateY(@degY) rotateZ(@degZ);
+   -o-transform-style: preserve-3d;
+   transform: rotateX(@degX) rotateY(@degY) rotateZ(@degZ);
+   transform-style: preserve-3d;
+}
+
+
+////Animations
+.animation(@animation) {
+    -webkit-animation: @animation;
+    animation: @animation;
+}
+.animation-name(@name) {
+    -webkit-animation-name: @name;
+    animation-name: @name;
+}
+.animation-duration(@duration) {
+    -webkit-animation-duration: @duration;
+    animation-duration: @duration;
+}
+.animation-timing-function(@timing-function) {
+    -webkit-animation-timing-function: @timing-function;
+    animation-timing-function: @timing-function;
+}
+.animation-delay(@delay) {
+    -webkit-animation-delay: @delay;
+    animation-delay: @delay;
+}
+.animation-iteration-count(@iteration-count) {
+    -webkit-animation-iteration-count: @iteration-count;
+    animation-iteration-count: @iteration-count;
+}
+.animation-direction(@direction) {
+    -webkit-animation-direction: @direction;
+    animation-direction: @direction;
+}
+
+
+
+
+////***** OTROS *****////
+////destaca los errores SEO mas importantes (falta de <title>, alt en las imagenes...)
+.seo-helper () {
+  img:not([alt]), img[alt=""], img[alt^=" "], a[href=""], a[href^=" "], a[rel*="nofollow"] {
+    outline: 2px solid red !important;
+    outline-offset: 3px !important;
+  }
+
+   head, title:empty, link, meta {display: block;}
+   title:empty:before {content: "Has puesto <title> vacio!"}
+   link:before {content: "Te falta el <title>!"}
+   title ~ link {display: none;}
+   meta[name="description"][content=""]:before, meta[name="description"][content=" "]:before {content: "No has puesto descripcion!";}
+}
+
+
+
+

@@ -1,0 +1,171 @@
+//*********** VARIABLES ***********/
+
+//*** COLORES ***/
+
+  //simples (semi-saturados)
+@cl-blue   : #428bca;
+@cl-brown  : #b55f32;
+@cl-green  : #5cb85c;
+@cl-orange : #ff8000;
+@cl-purple : #8351d1;
+@cl-red    : #de2d38;
+@cl-yellow : #f8f75e;
+@cl-pink   : #da3b8a;
+
+@cl-blue-sat   : saturate(@cl-blue, 15%);   
+@cl-brown-sat  : saturate(@cl-brown, 15%);  
+@cl-green-sat  : saturate(@cl-green, 15%);  
+@cl-orange-sat : saturate(@cl-orange, 15%); 
+@cl-purple-sat : saturate(@cl-purple, 15%); 
+@cl-red-sat    : saturate(@cl-red, 15%);    
+@cl-yellow-sat : saturate(@cl-yellow, 15%); 
+@cl-pink-sat   : saturate(@cl-pink, 15%);   
+
+@cl-blue-light   : lighten(@cl-blue, 80%);
+@cl-brown-light  : lighten(@cl-brown, 80%);
+@cl-green-light  : lighten(@cl-green, 80%);
+@cl-orange-light : lighten(@cl-orange, 80%);
+@cl-purple-light : lighten(@cl-purple, 80%);
+@cl-red-light    : lighten(@cl-red, 80%);
+@cl-yellow-light : lighten(@cl-yellow, 80%);
+@cl-pink-light   : lighten(@cl-pink, 80%);
+
+  //compuestos
+@cl-redbrown : #A1371A;
+@cl-pistache : #B4FF1D;
+@cl-tortoise : #A1371A;
+@cl-flesh    : #EE7D5A;
+
+@cl-redbrown-light : lighten(@cl-redbrown, 80%);
+@cl-pistache-light : lighten(@cl-pistache, 80%);
+@cl-tortoise-light : lighten(@cl-tortoise, 80%);
+@cl-flesh-light    : lighten(@cl-flesh, 80%);
+
+  //grises
+@cl-gray-darkest  : lighten(#000, 12.5%);
+@cl-gray-darker   : lighten(#000, 25%);
+@cl-gray-dark     : lighten(#000, 37.5%);  
+@cl-gray          : lighten(#000, 50%);
+@cl-gray-light    : lighten(#000, 65%);  
+@cl-gray-lighter  : lighten(#000, 80%);
+@cl-gray-lightest : lighten(#000, 95%);
+
+
+
+  //primarios y complementarios
+@cl-prim: #ff4726;	//rojo
+@cl-prim-light: lighten(@cl-prim, 14%);
+@cl-prim-dark: darken(@cl-prim, 14%);
+
+@cl-comp: #0055ff;	//azul
+@cl-comp-light: lighten(@cl-comp, 14%);
+@cl-comp-dark: darken(@cl-comp, 14%);
+
+
+@cl-comp2: #91cc14;  //verde
+@cl-comp2-light: lighten(@cl-comp, 14%);
+@cl-comp2-dark: darken(@cl-comp, 14%);
+
+
+//*** TAMAÑOS y BLOQUES***/
+
+  //padding y margin
+@mp-both-xs : 2px 4px;
+@mp-both-s  : 4px 8px;
+@mp-both    : 6px 12px;
+@mp-both-l  : 8px 16px;
+@mp-both-xl : 10px 20px;
+
+@mp-xs  : 5px;
+@mp-s   : 10px;
+@mp     : 15px;
+@mp-l   : 20px;
+@mp-xl  : 30px;
+@mp-xxl : 40px;
+
+  //bloques
+@tam-full : 100%;
+@tam-3-4  : 75%;
+@tam-half : 50%;
+@tam-1-4  : 25%;
+
+@tam-100: 100px;
+@tam-200: 200px;
+@tam-300: 300px;
+@tam-400: 400px;
+@tam-500: 500px;
+@tam-600: 600px;
+@tam-700: 700px;
+@tam-800: 800px;
+
+@tam-tablet : 768px;
+@tam-mobile : 480px;
+
+
+  //borders
+@bd-xs   : 1px;
+@bd-s    : 3px;
+@bd      : 5px;
+@bd-l    : 7px;
+@bd-xl   : 10px;
+@bd-xxl  : 16px;
+@bd-xxxl : 28px;
+
+@bd-rounded: 800px;
+
+  //Wraps
+@tam-wrap-fluid     : 80%;
+@tam-max-wrap-fluid : 1024px;
+@tam-wrap-static    : 1024px;
+
+@pad-wrap-fluid  : 12px 10.2% 12px 10.2%;
+@pad-wrap-static : 10px 20px;
+
+
+//*** FUENTES ***/
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic);
+
+
+  //familia (usar google fonts)
+@fn-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+@fn-family-serif:       Georgia, "Times New Roman", Times, serif;
+@fn-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
+@fn-google-roboto:  	'Roboto', sans-serif;
+
+@fn-family-base: @fn-google-roboto;	//Google Font Roboto (android)
+
+  //color
+@fn-color: @cl-gray-darkest;
+
+  //tamaños (rem, em)
+@fn-tam-base : 62.5%;
+@fn-tam  : 14;
+
+@fn-xxxl : 34;
+@fn-xxl  : 28;
+@fn-xl   : 23;
+@fn-l    : 19;
+@fn-m    : 15;
+@fn-s    : 12;
+@fn-xs   : 10;
+
+@fn-box  : 15;
+
+  //lineas base
+@fn-lineheight-base :  1.428571429; // 20/14
+@fn-lineheight      :  floor((@fn-tam * @fn-lineheight-base)); // ~20px
+
+
+
+//************  OTROS PARA MIXING   ********//
+
+
+//Animaciones
+@anim-fast   : 0.25s;
+@anim-fast-m : 0.38s;
+@anim        : 0.5s;
+@anim-slow   : 0.75s;
+
+
+
+

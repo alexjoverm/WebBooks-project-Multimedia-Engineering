@@ -1,0 +1,377 @@
+@import url("mixins.less");
+
+
+@transSections : 0.8s;
+@transMensaje  : 0.9s;
+
+
+/***********   ELEMENTOS COMUNES     *********/
+
+html {
+    font-size: @fn-tam-base;
+    font-family: @fn-family-base;
+}
+
+body{
+	.fn-static(@fn-tam);
+}
+
+h1 {
+	.fn-format-p(12px 0;@fn-xxxl);
+	color: multiply(@cl-comp2, #ccc);
+}
+
+h2 {
+	.fn-format-p(12px 0;@fn-xxl);
+	color: multiply(@cl-comp2, #d8d8d8);
+}
+
+h3 {
+	.fn-format-p(12px 0;@fn-xl);
+	color: multiply(@cl-comp2, #e4e4e4);
+}
+
+h4 {
+	.fn-format-p(12px 0;@fn-l);
+	color: multiply(@cl-comp2, #eee);
+}
+
+h5 {
+	.fn-format-p(12px 0;@fn-m);
+}
+
+h6 {
+	.fn-format-p(12px 0;@fn-xs);
+}
+
+a{
+	.fn-links;
+}
+
+img{
+	.img-responsive-soft();
+}
+
+hr{
+	margin-top: 3%;
+	margin-bottom: 1%;
+    border: 0; border-top: 1px solid @cl-prim;
+    width: 75%;
+}
+
+
+input, textarea{
+	.fm-input;
+	.img-responsive-soft;
+}
+
+input:not([type="submit"]){
+	.fm-input-glow;
+}
+
+input[type="submit"]{
+	.bt;
+	.bt-m;
+	.bt-color-tolight(@cl-comp);
+}
+
+textarea{
+	.fm-textarea-resizable;
+}
+
+label{
+	display: block;
+	margin: 4px 0;
+}
+
+
+body select{
+
+	.fm-input;
+	.img-responsive-soft;
+}
+
+
+
+
+
+/**************   BOTONES y BOXES  ***************/
+.btn-rojo{
+	.bt;
+	.bt-m;
+	.bt-color-tolight(@cl-prim);
+}
+
+.btn-azul{
+	.bt;
+	.bt-m;
+	.bt-color-tolight(@cl-comp);
+}
+
+.btn-verde{
+	.bt;
+	.bt-m;
+	.bt-color-tolight(@cl-comp2);
+}
+
+.btn-blanco{
+	.bt;
+	.bt-m;
+	.bt-color-white;
+	
+}
+
+.box-roja{
+	.bq-box(@cl-prim);
+}
+.box-azul{
+	.bq-box(@cl-comp);
+}
+.box-verde{
+	.bq-box(@cl-comp2);
+}
+
+
+/**********  BLOQUES  ***********/
+.col2{
+	.colx(2);
+}
+
+
+
+
+
+
+/*******************   ESTRUCTURA PRINCIPAL    *****************/
+
+main, header, footer>*{
+	.bq-wrap-fluid;
+}
+
+main>div>*{
+	.colx(2);
+}
+
+/********   HEADER  ********/
+header
+{
+	background: @cl-prim;
+
+	& h1{
+		color: white;
+		text-align: center;
+		.fn-static(40);
+	}
+}
+
+
+/********    MAIN  ********/
+main
+{
+	background: yellow;
+}
+
+
+/********   FOOTER  ********/
+footer
+{
+
+	& h4, & h5, & p, & li{
+		color: white;
+	}
+	& a{
+		.fn-links(lighten(@cl-comp, 25%));
+	}
+	
+	&>#footer-int{
+		background: @cl-gray-darker;
+		
+		&>h4{
+			text-align: center;
+		}
+		&>hr{
+			border-top: 1px solid #888;
+			margin: 5px auto 35px auto;
+		}
+
+		& article{
+			.colx(2);
+			
+			&>h5{
+				display: inline-block;
+				vertical-align: top;
+				margin: 40px auto auto 15px;
+			}
+			&>img{
+				.img-rounded(200px);
+				.bq-size(85px);
+			}
+
+			
+		}
+
+		&>a{
+			margin: 25px auto 10px auto;
+			display: block;
+			text-align: center;
+		}
+
+	}
+
+	&>#copy{
+		background: black;
+		text-align: center;
+	}
+}
+
+
+
+
+
+
+
+/************   OTROS  ************/
+
+.limpiar{
+	width: 100%;
+	height: 4px;
+	clear: both;
+}
+
+.linea{
+	.bq-line;
+}
+
+
+
+
+/**********************   CLASES ADICIONALES  ****************/
+/****** MENSAJE *********/
+
+.msgColor(@color){
+	background: fade(lighten(@color, 35%), 90%);
+	&>header{
+		background: darken(@color, 5%);
+	}
+	border: 1px solid @color;
+}
+
+.msgSuccess{
+	.msgColor(@cl-comp);
+}
+
+.msgWarning{
+	.msgColor(@cl-orange);
+}
+
+.msgError{
+	.msgColor(@cl-red);
+}
+
+
+
+.mensaje{
+	z-index: 2;
+	width: 400px;
+	overflow: auto;
+	position: fixed;
+	right: 10%;
+	
+	.opacity(1);
+	.bd-radius-top(10px);
+	.bd-radius-bottom(5px);
+	.transition-complete(all @transMensaje ease-in-out);
+
+	&>header{
+		background: darken(@cl-comp, 5%);
+		.bd-radius-top(10px);
+		min-height: 15px;
+		padding: @mp-both;
+		color: white;
+		text-align: center;
+
+		&>span{
+			float: right;
+			cursor: pointer;
+		}
+	}
+
+	&>p{
+		margin: 10px;
+	}
+
+	&>footer{
+		padding: 2% 0px;
+		text-align: center;
+	}
+
+	.box-shadow(0 0px 10px #888);
+}
+
+
+.invasivo{
+	width: 25% !important;
+	left: 40% !important;
+	top: 40% !important;
+}
+
+
+.overlay{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-color: black;
+	opacity: 0.5;
+	width: 100%;
+	height: 100%;
+	.transition-complete(all @transMensaje ease-in-out);
+}
+
+
+.ocultarFade{
+	.opacity(0.01);
+}
+
+
+.ocultarDerechaFade{
+	.opacity(0.01);
+	right: 1%;
+}
+
+
+
+
+/**************   ICONO ROTACION  *************/
+
+.icon-rotating{
+	display: inline-block;
+	-webkit-animation: spin 2s infinite linear;
+	-moz-animation: spin 2s infinite linear;
+	-o-animation: spin 2s infinite linear;
+	animation: spin 2s infinite linear;
+}
+
+@-moz-keyframes spin{
+	0%{-moz-transform:rotate(0deg);} 
+	100%{-moz-transform:rotate(359deg);}
+}
+
+@-webkit-keyframes spin{
+	0%{-webkit-transform:rotate(0deg);} 
+	100%{-webkit-transform:rotate(359deg);}
+}
+
+@-o-keyframes spin{
+	0%{-o-transform:rotate(0deg);}
+	100%{-o-transform:rotate(359deg);}
+}
+
+@-ms-keyframes spin{
+	0%{-ms-transform:rotate(0deg);} 
+	100%{-ms-transform:rotate(359deg);}
+}
+
+@keyframes spin{
+	0%{transform:rotate(0deg);} 
+	100%{transform:rotate(359deg);}
+}

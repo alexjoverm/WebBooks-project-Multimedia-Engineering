@@ -1,0 +1,137 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon.eot?7ix2kt');
+	src:url('../fonts/icomoon.eot?#iefix7ix2kt') format('embedded-opentype'),
+		url('../fonts/icomoon.woff?7ix2kt') format('woff'),
+		url('../fonts/icomoon.ttf?7ix2kt') format('truetype'),
+		url('../fonts/icomoon.svg?7ix2kt#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-right:before {
+	content: "\e61d";
+}
+.icon-home:before {
+	content: "\e600";
+}
+.icon-wrong:before {
+	content: "\e61e";
+}
+.icon-images:before {
+	content: "\e601";
+}
+.icon-image:before {
+	content: "\e602";
+}
+.icon-book:before {
+	content: "\e603";
+}
+.icon-file:before {
+	content: "\e604";
+}
+.icon-profile:before {
+	content: "\e605";
+}
+.icon-books:before {
+	content: "\e606";
+}
+.icon-address-book:before {
+	content: "\e607";
+}
+.icon-location:before {
+	content: "\e608";
+}
+.icon-drawer:before {
+	content: "\e609";
+}
+.icon-search:before {
+	content: "\e60a";
+}
+.icon-bookmarks:before {
+	content: "\e60b";
+}
+.icon-bookmark:before {
+	content: "\e60c";
+}
+.icon-thumbs-up:before {
+	content: "\e60d";
+}
+.icon-thumbs-up2:before {
+	content: "\e60e";
+}
+.icon-star:before {
+	content: "\e60f";
+}
+.icon-star2:before {
+	content: "\e610";
+}
+.icon-star3:before {
+	content: "\e611";
+}
+.icon-user:before {
+	content: "\e612";
+}
+.icon-user2:before {
+	content: "\e613";
+}
+.icon-upload:before {
+	content: "\e614";
+}
+.icon-key:before {
+	content: "\e615";
+}
+.icon-users:before {
+	content: "\e616";
+}
+.icon-pencil:before {
+	content: "\e617";
+}
+.icon-clock:before {
+	content: "\e618";
+}
+.icon-alarm:before {
+	content: "\e619";
+}
+.icon-bubble:before {
+	content: "\e61a";
+}
+.icon-bubbles:before {
+	content: "\e61b";
+}
+.icon-calendar:before {
+	content: "\e61c";
+}
+.icon-refresh:before {
+	content: "\e61f";
+}
+.icon-tag:before {
+	content: "\e620";
+}
+.icon-tags:before {
+	content: "\e621";
+}
+.icon-arrow-right:before {
+	content: "\e622";
+}
+.icon-arrow-left:before {
+	content: "\e623";
+}
+
+
+
+
