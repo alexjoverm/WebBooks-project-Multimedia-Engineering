@@ -62,17 +62,20 @@ hr{
 
 input, textarea{
 	.fm-input;
-	.img-responsive-soft;
+	
 }
 
 input:not([type="submit"]){
 	.fm-input-glow;
+	.img-responsive(95%);
+	margin-bottom: 12px;
 }
 
 input[type="submit"]{
 	.bt;
 	.bt-m;
-	.bt-color-tolight(@cl-comp);
+	.bt-color-todark(@cl-orange);
+	.bq-center;
 }
 
 textarea{
@@ -81,7 +84,8 @@ textarea{
 
 label{
 	display: block;
-	margin: 4px 0;
+	margin: 6px 0;
+	color: @cl-gray-darker;
 }
 
 
@@ -148,15 +152,44 @@ main, header, footer>*{
 	.bq-wrap-fluid;
 }
 
-main>div>*{
+main>div>section#login, main>div>section#puntuaciones{
 	.colx(2);
+	margin-bottom: @mp-l;
 }
+
+main>div>section#login>div{
+	.bq-box(@cl-orange);
+	width: 88%;
+	.box-shadow(e("2px 2px 5px 0px #aaa"));
+	.bq-
+	&>h3{
+		text-align: center;
+	}
+}
+
+main>div>section#puntuaciones>div{
+	.bq-box(@cl-comp2);
+	width: 88%;
+	.box-shadow(e("2px 2px 5px 0px #aaa"));
+	&>h3{
+		text-align: center;
+	}
+}
+
+/*
+main>div>section#login>div{
+	padding: @mp-both-s;
+	.fn-static(@fn-box);
+}*/
 
 /********   HEADER  ********/
 header
 {
 	background: @cl-prim;
 
+	& a:hover{
+		text-decoration: none;
+	}
 	& h1{
 		color: white;
 		text-align: center;
@@ -168,7 +201,103 @@ header
 /********    MAIN  ********/
 main
 {
-	background: yellow;
+	&>div{
+
+		&>section#puntuaciones{
+			& ul{
+				padding: 0 12px;
+				list-style: none;
+
+				&>li{
+					.bq-box-comment(@cl-comp2);
+					&>h5{
+						&>span{
+							float: right;
+						}
+					}
+					&>p{
+						&>span{
+							float: right;
+						}
+					}
+				}
+			}
+		}
+
+		&>section#juego{
+			
+			width: 300px;
+			height: 450px;
+			margin: 0px auto;
+			/*
+			margin-left: 20%;*/
+			background: yellow;
+
+			&>canvas{
+				
+			}
+		}
+
+		&>section#sidebar{
+			width: 100%;
+			background: screen(@cl-comp2, #ddd);
+			height: 130px;
+
+			&>div{
+				
+				float: left;
+				height: 90px;
+				margin: 0; padding: 0;
+				text-align: center;
+			}
+			
+
+			&>div:first-child{
+				background: @cl-comp2;
+				position: relative;
+				color: white;
+				text-align: center;
+				width: 100%;
+				height: 40px;
+				float: none;
+				border:none;
+
+				&>h5{
+					padding: 10px 0;
+				}
+
+				&>span{
+					display: block;
+					position: absolute;
+					top: 3px;
+					right: 10px;
+					float: right;
+				}
+			}
+
+			&>div:nth-child(2){
+				border: none;
+				width: 54%;
+
+				&>.btn-azul{
+					margin: 5px 1px;
+				}
+			}
+
+			&>div:nth-child(3){
+				&>*{
+					display: block;
+					margin: 7px auto;
+					width: 40px;
+				}
+			}
+
+			&>div+div+div{
+				//border-left: 2px solid @cl-comp2;
+				width: 22%;
+			}
+		}
+	}
 }
 
 
@@ -196,7 +325,8 @@ footer
 
 		& article{
 			.colx(2);
-			
+			margin-bottom: 15px;
+
 			&>h5{
 				display: inline-block;
 				vertical-align: top;
@@ -205,6 +335,7 @@ footer
 			&>img{
 				.img-rounded(200px);
 				.bq-size(85px);
+				.box-shadow(e("2px 2px 5px 1px #000"));
 			}
 
 			

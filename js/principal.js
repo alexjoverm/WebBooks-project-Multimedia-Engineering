@@ -1,5 +1,6 @@
 //*********************   VARIABLES GLOBALES
 rutaImg       = 'img/';
+rutaPunt	  = 'inc/puntuaciones.json';
 
 tiempoRetrasoTrans	= 60;
 tiempoAnimTrans		= 800;
@@ -19,6 +20,11 @@ function ComprobarLogin(){
 		return false;
 	else
 		return true;
+}
+
+function HacerLogin(form){
+	sessionStorage.setItem('user', form.user.value);
+	return true;
 }
 
 
@@ -45,7 +51,7 @@ function EliminarSaltoLinea(text){
 function Insertar(lugar, etiqueta , resto){
 
 	var nodo = document.createElement(etiqueta);
-	nodo.innerHTML = eliminaSaltoLinea(resto); // Elimina saltos de linea
+	nodo.innerHTML = EliminarSaltoLinea(resto); // Elimina saltos de linea
 
 	return lugar.appendChild(nodo);
 
@@ -74,7 +80,7 @@ function InsertarAntesDe(lugar, etiqueta , resto ,referencia){
 
 }
 
-function reemplazar(lugar, etiqueta , resto ,referencia){
+function Reemplazar(lugar, etiqueta , resto ,referencia){
 
 	var nodo = document.createElement(etiqueta);
 	nodo.innerHTML = eliminaSaltoLinea(resto);
@@ -83,7 +89,7 @@ function reemplazar(lugar, etiqueta , resto ,referencia){
 
 }
 
-function reemplazarConClases(lugar, etiqueta , resto, referencia, clases){
+function ReemplazarConClases(lugar, etiqueta , resto, referencia, clases){
 
 	var nodo = document.createElement(etiqueta);
 
@@ -98,9 +104,76 @@ function reemplazarConClases(lugar, etiqueta , resto, referencia, clases){
 }
 
 
+
+//******************    AJAX
+// Realiza peticion AJAX (mode true para POST, false para GET)
+function RealizarPeticion(param, callback, ruta, mode){
+	var xhr = new XMLHttpRequest();
+
+	// Event Listener
+	xhr.onreadystatechange = function(){
+		if(this.readyState == 4)
+			if(this.status==200)
+				callback(this.responseText);
+	};
+
+
+	// POST
+	if(mode){
+		xhr.open('POST', ruta, true);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	}
+	else // GET
+		xhr.open('GET', ruta, true);
+	
+	// Realizamos la llamada
+	xhr.send(param);
+}
+
+
+function PedirPuntuaciones()
+{
+	RealizarPeticion('', cbInsertarPuntuaciones, rutaPunt, true);
+}
+
+
+function cbInsertarPuntuaciones(respuesta)
+{
+	var donde = document.querySelector('body>main>div>section#puntuaciones ul');
+	var punt = JSON.parse(respuesta);
+
+	punt.sort( function(izq, der){
+		if(izq.nivel < der.nivel || izq.nivel == der.nivel && izq.lineas < der.lineas || izq.nivel == der.nivel && izq.lineas == der.lineas && izq.tiempo > der.tiempo)
+			return 1;
+
+		else return -1;
+	});
+
+	punt.forEach(function(elem, index)
+	{
+		var min = parseInt(elem.tiempo / 60);
+		var seg = elem.tiempo % 60;
+
+		if(seg < 10)
+			seg = '0' + seg;
+
+		//Creamos el contenido del Article
+		var texto = '<h5><i class="icon-user"> </i> '+elem.nombre+'<span><i class="icon-clock"> </i> '+min+':'+seg+'</span></h5>';
+			texto += '<p>Nivel: '+elem.nivel;
+			texto += '<span>Lineas: '+elem.lineas+'</span></p>';
+			
+		// Insertamos texto en libroSection, y que lo envuelva en un article con la clase ocultar
+		var nodo = Insertar(donde, 'li', texto);
+	});
+}
+
+
+
+
+
 //*******************    MENSAJES
 
-function crearMensajeInvasivo(texto, accion, titulo, color, txtBoton, lugar){
+function CrearMensajeInvasivo(texto, accion, titulo, color, txtBoton, lugar){
 
 	//creamos un overlay
 	var overlay = InsertarConClases(document.body, 'div', '', ['overlay','ocultarFade']);
@@ -127,6 +200,37 @@ function crearMensajeInvasivo(texto, accion, titulo, color, txtBoton, lugar){
 		overlay.classList.remove('ocultarFade');
 	}, tiempoRetrasoTrans);
 }
+
+
+
+
+
+
+
+
+/**********************  JUEGO  ********************/
+function LoadSidebar()
+{
+	var donde = document.querySelector('body>main>div>section#sidebar');
+
+	var userPlace = donde.children[0].children[0];
+	userPlace.innerHTML = sessionStorage.getItem('user');
+	//var levelPlace = donde.children[1];
+	//var buttonsPlace = donde.children[2];
+	//var puntPlace = donde.children[3];
+
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

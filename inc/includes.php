@@ -16,7 +16,7 @@ function print_header(){
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/style-fonts.css">
 		
-		
+		<script src="js/principal.js"></script>
 	</head>
 
 	<body>
@@ -27,7 +27,7 @@ function print_header(){
 
 		<header>
 			<div>
-				<h1>Tetris</h1>
+				<a href="index.php"><h1>Tetris</h1></a>
 			</div>
 		</header>
 heredoc;
@@ -76,7 +76,7 @@ echo <<<heredoc
 		</footer>
 
 
-		<script src="js/principal.js"></script>
+		
 	</body>
 
 </html>

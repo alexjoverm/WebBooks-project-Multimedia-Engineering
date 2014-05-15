@@ -79,14 +79,15 @@ textarea {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  width: auto;
-  max-width: 100%;
 }
 input:not([type="submit"]) {
   -webkit-transition: all 0.4s ease;
   -moz-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
   transition: all 0.4s ease;
+  width: 95%;
+  max-width: none;
+  margin-bottom: 12px;
 }
 input:not([type="submit"]):hover {
   border: 1px solid #ff8f1f;
@@ -120,9 +121,11 @@ input[type="submit"] {
   padding: 6px 12px;
   font-size: 1.4em;
   font-size: 1.4rem;
-  background: #1966ff;
+  background: #df7000;
   color: #ffffff;
-  border: 1px solid #0558ff;
+  border: 1px solid #cb6600;
+  display: block;
+  margin: 0 auto;
 }
 input[type="submit"]:hover,
 input[type="submit"]:focus {
@@ -130,8 +133,8 @@ input[type="submit"]:focus {
 }
 input[type="submit"]:hover,
 input[type="submit"]:focus {
-  background: #004adf;
-  border: 1px solid #0044cb;
+  background: #ff8c19;
+  border: 1px solid #ff8205;
   color: #ffffff;
 }
 textarea {
@@ -141,7 +144,8 @@ textarea {
 }
 label {
   display: block;
-  margin: 4px 0;
+  margin: 6px 0;
+  color: #404040;
 }
 body select {
   background-color: #ffffff;
@@ -291,7 +295,7 @@ body select {
   border-left: 4px solid #df3e21;
   margin: 15px auto;
   padding: 6px 12px;
-  font-size: 1.5em;
+  font-size: 15px;
   font-size: 1.5rem;
 }
 .box-roja > h3 {
@@ -302,7 +306,7 @@ body select {
   border-left: 4px solid #004adf;
   margin: 15px auto;
   padding: 6px 12px;
-  font-size: 1.5em;
+  font-size: 15px;
   font-size: 1.5rem;
 }
 .box-azul > h3 {
@@ -313,7 +317,7 @@ body select {
   border-left: 4px solid #7fb211;
   margin: 15px auto;
   padding: 6px 12px;
-  font-size: 1.5em;
+  font-size: 15px;
   font-size: 1.5rem;
 }
 .box-verde > h3 {
@@ -351,14 +355,17 @@ footer > * {
   max-width: 1024px;
   padding: 12px 10.2% 12px 10.2%;
 }
-main > div > * {
+main > div > section#login,
+main > div > section#puntuaciones {
   float: none;
   width: 95%;
   margin-right: 0;
   overflow: auto;
+  margin-bottom: 20px;
 }
 @media (min-width: 768px) {
-  main > div > * {
+  main > div > section#login,
+  main > div > section#puntuaciones {
     width: 45%;
     float: left;
     margin-right: 10%;
@@ -367,13 +374,58 @@ main > div > * {
       margin-right: 0;
     }*/
   }
-  main > div > *:last-child {
+  main > div > section#login:last-child,
+  main > div > section#puntuaciones:last-child {
     margin-right: 0;
   }
 }
+main > div > section#login > div {
+  background: #fff3e7;
+  border-left: 4px solid #df7000;
+  margin: 15px auto;
+  padding: 6px 12px;
+  font-size: 15px;
+  font-size: 1.5rem;
+  width: 88%;
+  -webkit-box-shadow: 2px 2px 5px 0px #aaa;
+  -moz-box-shadow: 2px 2px 5px 0px #aaa;
+  box-shadow: 2px 2px 5px 0px #aaa;
+}
+main > div > section#login > div > h3 {
+  color: #df7000;
+}
+.bq- main > div > section#login > div > h3 {
+  text-align: center;
+}
+main > div > section#puntuaciones > div {
+  background: #f5fae9;
+  border-left: 4px solid #7fb211;
+  margin: 15px auto;
+  padding: 6px 12px;
+  font-size: 15px;
+  font-size: 1.5rem;
+  width: 88%;
+  -webkit-box-shadow: 2px 2px 5px 0px #aaa;
+  -moz-box-shadow: 2px 2px 5px 0px #aaa;
+  box-shadow: 2px 2px 5px 0px #aaa;
+}
+main > div > section#puntuaciones > div > h3 {
+  color: #7fb211;
+}
+main > div > section#puntuaciones > div > h3 {
+  text-align: center;
+}
+/*
+main>div>section#login>div{
+	padding: @mp-both-s;
+	.fn-static(@fn-box);
+}*/
 /********   HEADER  ********/
 header {
   background: #ff4726;
+}
+header a:hover {
+  text-decoration: none;
 }
 header h1 {
   color: white;
@@ -382,8 +434,94 @@ header h1 {
   font-size: 4rem;
 }
 /********    MAIN  ********/
-main {
+main > div > section#puntuaciones ul {
+  padding: 0 12px;
+  list-style: none;
+}
+main > div > section#puntuaciones ul > li {
+  background: #f6fbec;
+  border: 2px solid #7fb211;
+  -webkit-border-radius: 8px 8px 4px 4px;
+  -moz-border-radius: 8px 8px 4px 4px;
+  border-radius: 8px 8px 4px 4px;
+  margin-top: 15px;
+}
+main > div > section#puntuaciones ul > li > h5 {
+  color: white;
+  margin: 0 auto 5px auto;
+  font-size: 15px;
+  font-size: 1.5rem;
+  display: block;
+  width: 86%;
+  padding: 5px 7%;
+  background: #7fb211;
+}
+main > div > section#puntuaciones ul > li > p {
+  display: block;
+  width: 86%;
+  padding: 5px 7%;
+  margin: 10px auto;
+}
+main > div > section#puntuaciones ul > li > h5 > span {
+  float: right;
+}
+main > div > section#puntuaciones ul > li > p > span {
+  float: right;
+}
+main > div > section#juego {
+  width: 300px;
+  height: 450px;
+  margin: 0px auto;
+  /*
+			margin-left: 20%;*/
   background: yellow;
+}
+main > div > section#sidebar {
+  width: 100%;
+  background: #f0f8e0;
+  height: 130px;
+}
+main > div > section#sidebar > div {
+  float: left;
+  height: 90px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+main > div > section#sidebar > div:first-child {
+  background: #91cc14;
+  position: relative;
+  color: white;
+  text-align: center;
+  width: 100%;
+  height: 40px;
+  float: none;
+  border: none;
+}
+main > div > section#sidebar > div:first-child > h5 {
+  padding: 10px 0;
+}
+main > div > section#sidebar > div:first-child > span {
+  display: block;
+  position: absolute;
+  top: 3px;
+  right: 10px;
+  float: right;
+}
+main > div > section#sidebar > div:nth-child(2) {
+  border: none;
+  width: 54%;
+}
+main > div > section#sidebar > div:nth-child(2) > .btn-azul {
+  margin: 5px 1px;
+}
+main > div > section#sidebar > div:nth-child(3) > * {
+  display: block;
+  margin: 7px auto;
+  width: 40px;
+}
+main > div > section#sidebar > div + div + div {
+  width: 22%;
 }
 /********   FOOTER  ********/
 footer h4,
@@ -421,6 +559,7 @@ footer > #footer-int article {
   width: 95%;
   margin-right: 0;
   overflow: auto;
+  margin-bottom: 15px;
 }
 @media (min-width: 768px) {
   footer > #footer-int article {
@@ -448,6 +587,9 @@ footer > #footer-int article > img {
   border-radius: 200px;
   width: 85px;
   height: auto;
+  -webkit-box-shadow: 2px 2px 5px 1px #000;
+  -moz-box-shadow: 2px 2px 5px 1px #000;
+  box-shadow: 2px 2px 5px 1px #000;
 }
 footer > #footer-int > a {
   margin: 25px auto 10px auto;
