@@ -209,7 +209,7 @@ body select {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  padding: 6px 12px;
+  padding: 5px 10px;
   font-size: 1.4em;
   font-size: 1.4rem;
   background: #1966ff;
@@ -515,10 +515,10 @@ main > div > section#sidebar > div:nth-child(2) {
 main > div > section#sidebar > div:nth-child(2) > .btn-azul {
   margin: 5px 1px;
 }
-main > div > section#sidebar > div:nth-child(3) > * {
-  display: block;
-  margin: 7px auto;
-  width: 40px;
+main > div > section#sidebar > div:nth-child(3) > img {
+  cursor: pointer;
+  display: inline-block;
+  margin: 30px 1px 0 1px;
 }
 main > div > section#sidebar > div + div + div {
   width: 22%;
@@ -759,5 +759,67 @@ footer > #copy {
   }
   100% {
     transform: rotate(359deg);
+  }
+}
+.btn-inactive {
+  cursor: initial !important;
+  -moz-opacity: 0.6;
+  -khtml-opacity: 0.6;
+  -webkit-opacity: 0.6;
+  opacity: 0.6;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=60);
+  filter: alpha(opacity=60);
+}
+@media (min-width: 768px) {
+  .btn-azul {
+    padding: 6px 12px;
+    font-size: 1.4em;
+    font-size: 1.4rem;
+  }
+  main > div > section#juego {
+    display: inline-block;
+    float: left;
+    margin: 0px 10px 0 14%;
+    background: yellow;
+  }
+  main > div > section#sidebar {
+    display: inline-block;
+    float: left;
+    width: 150px;
+    background: #f0f8e0;
+    height: 450px;
+  }
+  main > div > section#sidebar > div {
+    width: 100% !important;
+    border: none;
+    float: none;
+    height: 92.5px;
+    padding: 10px 0;
+    margin: 12px 0;
+  }
+  main > div > section#sidebar > div > h5 {
+    margin: 0;
+  }
+  main > div > section#sidebar > div:nth-child(3) > img {
+    margin: 30px 10px 0 10px;
+  }
+  main > div > section#sidebar > div:first-child {
+    margin: 0;
+    height: auto;
+    padding: 0;
+  }
+  main > div > section#sidebar > div:first-child > span {
+    display: inline-block;
+    margin: 12px auto;
+    position: initial;
+    float: none;
+  }
+  main > div > section#sidebar > div:last-child {
+    padding: 0;
+  }
+}
+@media (min-width: 950px) {
+  main > div > section#juego {
+    margin: 0px 10px 0 22%;
   }
 }

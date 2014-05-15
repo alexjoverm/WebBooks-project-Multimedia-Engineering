@@ -223,7 +223,38 @@ function LoadSidebar()
 }
 
 
+function Play(este){
+	console.log("play");
+	este.style.display ="none";
+	este.parentNode.children[1].style.display = "inline-block";
+}
 
+function Pausa(este){
+	console.log("pause");
+	if(!este.classList.contains("btn-inactive"))
+		console.log('Activo');
+}
+
+function Stop(este){
+	console.log("stop");
+	este.style.display ="none";
+	este.parentNode.children[0].style.display = "inline-block";
+}
+
+function SetPunt(line, time){
+	var donde = document.querySelector('body>main>div>section#sidebar>div:last-child');
+	var lineElem = donde.children[0];
+	var timeElem = donde.children[1];
+
+	var min = parseInt(time / 60);
+	var seg = time % 60;
+
+	if(seg < 10)
+		seg = '0' + seg;
+
+	lineElem.innerHTML = "Lineas: "+line;
+	timeElem.innerHTML = '<i class="icon-clock"> </i> '+ min +':'+ seg +'</p>';
+}
 
 
 

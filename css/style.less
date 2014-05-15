@@ -108,7 +108,7 @@ body select{
 
 .btn-azul{
 	.bt;
-	.bt-m;
+	.bt-sm;
 	.bt-color-tolight(@cl-comp);
 }
 
@@ -285,10 +285,10 @@ main
 			}
 
 			&>div:nth-child(3){
-				&>*{
-					display: block;
-					margin: 7px auto;
-					width: 40px;
+				&>img{
+					cursor: pointer;
+					display: inline-block;
+					margin: 30px 1px 0 1px;
 				}
 			}
 
@@ -505,4 +505,83 @@ footer
 @keyframes spin{
 	0%{transform:rotate(0deg);} 
 	100%{transform:rotate(359deg);}
+}
+
+
+
+
+.btn-inactive{
+	cursor: initial !important;
+	.opacity(0.6);
+}
+
+
+
+
+
+
+
+@media (min-width: @tam-tablet){
+
+	.btn-azul{
+		.bt-m;
+	}
+
+	main>div{
+		&>section#juego{
+			display: inline-block;
+			float: left;
+			margin: 0px 10px 0 14%;
+			background: yellow;
+		}
+
+		&>section#sidebar{
+			display: inline-block;
+			float: left;
+			width: 150px;
+			background: screen(@cl-comp2, #ddd);
+			height: 450px;
+
+			&>div{
+				width: 100% !important;
+				border: none;
+				float: none;
+				height: unit(450/4 - 20, px);
+				padding: 10px 0;
+				margin: 12px 0;
+
+				&>h5{ margin: 0; }
+			}
+
+			&>div:nth-child(3){
+				&>img{
+					margin: 30px 10px 0 10px;
+				}
+			}
+
+			&>div:first-child{
+				margin: 0;
+				height: auto;
+				padding: 0;
+				&>span{
+					display: inline-block;
+					margin: 12px auto;
+					position: initial;
+					float: none;
+				}
+			}
+			&>div:last-child{
+				padding: 0;
+			}
+		}
+	}
+}
+
+
+@media (min-width: 950px){
+	main>div{
+		&>section#juego{
+			margin: 0px 10px 0 22%;
+		}
+	}
 }
