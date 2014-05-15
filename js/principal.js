@@ -13,6 +13,7 @@ countMsg			= 0;
 
 function CerrarSesion(){
 	sessionStorage.removeItem('user');
+	location.href = "index.php";
 }
 
 function ComprobarLogin(){

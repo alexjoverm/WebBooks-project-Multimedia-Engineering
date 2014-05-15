@@ -434,6 +434,9 @@ header h1 {
   font-size: 4rem;
 }
 /********    MAIN  ********/
+main {
+  min-height: 500px;
+}
 main > div > section#puntuaciones ul {
   padding: 0 12px;
   list-style: none;

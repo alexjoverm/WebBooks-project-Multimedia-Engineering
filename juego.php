@@ -19,7 +19,7 @@
 
 
 			<section id="sidebar">
-				<div><h5></h5><span class="btn-rojo">Logout</span></div>
+				<div><h5></h5><span onclick="CerrarSesion();" class="btn-rojo">Logout</span></div>
 				<div><h5>Nivel</h5><span class="btn-azul">1</span>
 					<span class="btn-azul">2</span>
 					<span class="btn-azul">3</span>
